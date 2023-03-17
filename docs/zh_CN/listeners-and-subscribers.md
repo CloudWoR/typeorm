@@ -223,3 +223,14 @@ export class PostSubscriber implements EntitySubscriberInterface {
   }
 }
 ```
+# 请注意
+在完成@EventSubscriber()所修饰的监听类时，需要在数据源选项中（DataSourceOptions），挂载此监听其方可生效。
+```typescript
+  const dataSource = new DataSource({
+    type: 'better-sqlite3',
+    database: '../../path.db',
+    entities,
+    subscribers: [IsUpdatedService],
+    synchronize: true
+  });
+```
